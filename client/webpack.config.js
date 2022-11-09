@@ -23,8 +23,13 @@ module.exports = () => {
         title: 'JATE'
       }),
 
-      new InjectManifest(),
+      new InjectManifest({
+        swSrc: './src-sw.js',
+        swDest: 'src-sw.js',
+      }),
       new WebpackPwaManifest({
+        fingerprints: false,
+        inject: true,
         name: 'JT',
         short_name: 'JT',
         description: 'Keep track of important tasks!',
@@ -34,7 +39,7 @@ module.exports = () => {
         publicPath: './',
         icons: [
           {
-            src: path.resolve('assets/images/logo.png'),
+            src: path.resolve('src/images/logo.png'),
             sizes: [96, 128, 192, 256, 384, 512],
             destination: path.join('assets', 'icons'),
           },
